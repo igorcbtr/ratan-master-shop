@@ -1,6 +1,6 @@
 # Ratan Master — Woven for living
 
-Ratan Master is a responsive storefront landing page for handmade rattan planters. It uses a warm cream-and-brown brand palette, an editorial layout, CSS product placeholders, and lightweight vanilla JavaScript.
+Ratan Master is a responsive storefront landing page for handmade rattan planters. It uses a warm cream-and-brown brand palette, an editorial layout, local product photography, and lightweight vanilla JavaScript.
 
 ## Run locally
 
@@ -15,9 +15,9 @@ Open <http://localhost:8000>. Serving the project over HTTP is recommended so lo
 ## Project structure
 
 ```text
-index.html       # Storefront sections, product cards, reviews, and contact form
+index.html       # Storefront sections, product cards, reviews, and direct contact links
 css/main.css     # Design tokens, responsive layout, and component styles
-js/main.js       # Menu, smooth scrolling, reveal animation, and validation
+js/main.js       # Menu, smooth scrolling, reveal animation, and header behavior
 assets/images/   # Brand logo, favicon, and product photography
 ```
 
@@ -31,7 +31,7 @@ assets/images/   # Brand logo, favicon, and product photography
 
 ## Accessibility and responsive behavior
 
-The page includes semantic sections and articles, labeled navigation and menu controls, visible keyboard focus states, Escape-to-close navigation, inline form errors, live status feedback, telephone and email links, and reduced-motion support. The layout is mobile-first and collapses to a single column below `760px`.
+The page includes semantic sections and articles, labeled navigation and menu controls, visible keyboard focus states, Escape-to-close navigation, telephone and email links, social link labels, and reduced-motion support. The layout is mobile-first and collapses to a single column below `760px`.
 
 ## Development workflow
 
