@@ -77,14 +77,38 @@ fields.forEach((field) => {
     });
 });
 
-form.addEventListener('submit', (event) => {
+form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const valid = fields.map(validate).every(Boolean);
-    status.textContent = valid ? 'Спасибо — мы скоро свяжемся с вами.' : 'Проверьте выделенные поля.';
-    if (valid) {
+    if (!valid) {
+        status.textContent = 'Проверьте выделенные поля.';
+        fields.find((field) => field.classList.contains('is-invalid'))?.focus();
+        return;
+    }
+
+    const submitButton = form.querySelector('button[type="submit"]');
+    const payload = new FormData(form);
+    payload.append('_subject', 'Новая заявка с сайта Ratan Master');
+    payload.append('_captcha', 'false');
+    submitButton.disabled = true;
+    status.textContent = 'Отправляем сообщение…';
+
+    try {
+        const response = await fetch(form.dataset.endpoint, {
+            method: 'POST',
+            headers: { Accept: 'application/json' },
+            body: payload,
+        });
+        if (!response.ok) throw new Error(`FormSubmit returned ${response.status}`);
+        const result = await response.json();
+        if (result.success === false) throw new Error('FormSubmit rejected the request');
+        status.textContent = 'Спасибо — сообщение отправлено. Мы скоро свяжемся с вами.';
         form.reset();
         fields.forEach((field) => validate(field));
-    } else {
-        fields.find((field) => field.classList.contains('is-invalid'))?.focus();
+    } catch (error) {
+        console.error('Contact form submission failed:', error);
+        status.textContent = 'Не удалось отправить сообщение. Попробуйте ещё раз или позвоните нам.';
+    } finally {
+        submitButton.disabled = false;
     }
 });

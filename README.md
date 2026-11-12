@@ -18,16 +18,16 @@ Open <http://localhost:8000>. Serving the project over HTTP is recommended so lo
 index.html       # Storefront sections, product cards, reviews, and contact form
 css/main.css     # Design tokens, responsive layout, and component styles
 js/main.js       # Menu, smooth scrolling, reveal animation, and validation
-assets/images/   # Brand logo, favicon, and future product photography
+assets/images/   # Brand logo, favicon, and product photography
 ```
 
 ## Content and visual customization
 
-- Replace the CSS-built `.hero-art`, `.product-art`, and `.story-art` placeholders with local `<img>` elements when photography is ready. Use descriptive `alt` text, explicit dimensions, and `loading="lazy"` for below-the-fold images.
+- Product photography is stored in `assets/images/products/` and is used by the hero, collection cards, and story section. Use descriptive `alt` text, explicit dimensions, and `loading="lazy"` for below-the-fold images when adding more photos.
 - Edit product names, prices, reviews, contact details, and Russian interface copy in `index.html`.
 - Adjust the visual system in `:root` inside `css/main.css`. Key tokens include `--ink`, `--paper`, `--cream`, `--moss`, `--clay`, and `--logo-paper`.
 - Keep `assets/images/ratan-master-logo.jpg` as the source brand mark and `assets/images/ratan-master-favicon.png` as the local favicon. Update both deliberately if the brand artwork changes.
-- The contact form currently validates in the browser and displays a no-reload success message. Connect the submit handler to a real endpoint before accepting orders.
+- The contact form validates in the browser and sends `name`, `phone`, `message`, and `subject` through the FormSubmit AJAX endpoint configured in `index.html`. FormSubmit may require email activation the first time a message is sent; keep the endpoint address aligned with the mailbox used by the business.
 
 ## Accessibility and responsive behavior
 
