@@ -1,6 +1,6 @@
-# Ratan — Woven for living
+# Ratan Master — плетём для жизни
 
-A responsive storefront landing page for a handmade rattan planter studio. The redesign uses a warm editorial layout, earthy palette, CSS-built product placeholders, and lightweight vanilla JavaScript.
+Адаптивный лендинг мастерской плетёных кашпо из ротанга. Дизайн использует тёплую кремово-коричневую палитру логотипа, editorial-композицию, CSS-заглушки товаров и лёгкий vanilla JavaScript.
 
 ## Run locally
 
@@ -10,27 +10,27 @@ There is no build step:
 python3 -m http.server 8000
 ```
 
-Open <http://localhost:8000>. A static host such as GitHub Pages, Netlify, or Vercel can deploy the repository as-is.
+Откройте <http://localhost:8000>. Сайт можно развернуть без сборки на GitHub Pages, Netlify, Vercel или любом другом статическом хостинге.
 
 ## Structure
 
 ```text
-index.html       # Storefront sections, product cards, reviews, and contact form
-css/main.css     # Design tokens, responsive layout, and component styles
-js/main.js       # Menu, smooth scrolling, reveal animation, and form validation
-assets/images/   # Optional real product and studio images
+index.html       # Секции магазина, карточки товаров, отзывы и форма
+css/main.css     # Палитра, адаптивная сетка и стили компонентов
+js/main.js       # Меню, прокрутка, анимация появления и валидация
+assets/images/   # Логотип и будущие фото товаров
 ```
 
 ## Customization
 
-- Replace the CSS-built `.hero-art`, `.product-art`, and `.story-art` placeholders with `<img>` elements when photography is ready. Use descriptive `alt` text, explicit dimensions, and `loading="lazy"` for below-the-fold images.
-- Edit product names, pricing, reviews, and contact details directly in `index.html`.
-- Adjust the visual system in `:root` inside `css/main.css`; the main tokens are `--ink`, `--paper`, `--moss`, and `--clay`.
-- The contact form currently validates in the browser and displays a no-reload success message. Connect the submit handler to a real endpoint before accepting orders.
+- Замените CSS-заглушки `.hero-art`, `.product-art` и `.story-art` на `<img>`, когда появятся фотографии. Используйте понятный `alt`, размеры и `loading="lazy"` для изображений ниже первого экрана.
+- Названия, цены, отзывы и контакты редактируются в `index.html`.
+- Палитра настраивается в `:root` файла `css/main.css`; ключевые переменные — `--ink`, `--paper`, `--moss` и `--clay`.
+- Форма пока валидируется в браузере и показывает сообщение без перезагрузки. Перед приёмом заказов подключите реальный endpoint.
 
 ## Accessibility
 
-The page includes semantic sections and articles, labeled navigation and menu controls, keyboard focus states, Escape-to-close navigation, inline form errors, live status feedback, and reduced-motion support. Layout is mobile-first and collapses to a single column below `760px`.
+Страница содержит семантические секции и статьи, подписанную навигацию, клавиатурный фокус, закрытие меню по Escape, inline-ошибки формы, live-статус и поддержку reduced motion. Макет mobile-first и становится одноколоночным ниже `760px`.
 
 ## Workflow
 

@@ -7,7 +7,7 @@ const setMenuState = (isOpen) => {
     navList.classList.toggle('active', isOpen);
     document.body.classList.toggle('menu-open', isOpen);
     burger.setAttribute('aria-expanded', String(isOpen));
-    burger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    burger.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
 };
 
 burger.addEventListener('click', () => setMenuState(!navList.classList.contains('active')));
@@ -59,10 +59,10 @@ const fields = ['name', 'phone', 'message'].map((id) => document.getElementById(
 const validate = (field) => {
     const value = field.value.trim();
     let message = '';
-    if (!value) message = 'This field is required.';
-    if (field.id === 'name' && value && value.length < 2) message = 'Please enter at least 2 characters.';
-    if (field.id === 'phone' && value && value.replace(/\D/g, '').length < 7) message = 'Please enter a valid contact.';
-    if (field.id === 'message' && value && value.length < 8) message = 'Please tell us a little more.';
+    if (!value) message = 'Заполните это поле.';
+    if (field.id === 'name' && value && value.length < 2) message = 'Введите минимум 2 символа.';
+    if (field.id === 'phone' && value && value.replace(/\D/g, '').length < 7) message = 'Введите корректный контакт.';
+    if (field.id === 'message' && value && value.length < 8) message = 'Расскажите немного подробнее.';
     const error = document.getElementById(`${field.id}-error`);
     field.classList.toggle('is-invalid', Boolean(message));
     field.setAttribute('aria-invalid', String(Boolean(message)));
@@ -80,7 +80,7 @@ fields.forEach((field) => {
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     const valid = fields.map(validate).every(Boolean);
-    status.textContent = valid ? 'Thanks — we will be in touch soon.' : 'Please check the highlighted fields.';
+    status.textContent = valid ? 'Спасибо — мы скоро свяжемся с вами.' : 'Проверьте выделенные поля.';
     if (valid) {
         form.reset();
         fields.forEach((field) => validate(field));
