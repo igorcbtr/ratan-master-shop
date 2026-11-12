@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,18 +17,18 @@
     <header class="header" id="header">
         <div class="container">
             <nav class="nav">
-                <a href="#" class="logo">Ratan</a>
-                <ul class="nav-list" id="nav-list">
+                <a href="#hero" class="logo" aria-label="Ratan home">Ratan</a>
+                <button class="burger" id="burger" type="button" aria-label="Open menu" aria-controls="nav-list" aria-expanded="false">
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                </button>
+                <ul class="nav-list" id="nav-list" aria-label="Primary navigation">
                     <li><a href="#catalog" class="nav-link">Catalog</a></li>
                     <li><a href="#testimonials" class="nav-link">Reviews</a></li>
                     <li><a href="#contact" class="nav-link">Contacts</a></li>
                 </ul>
                 <a href="#contact" class="btn btn-primary nav-btn">Order</a>
-                <button class="burger" id="burger" aria-label="Open menu">
-                    <span class="burger-line"></span>
-                    <span class="burger-line"></span>
-                    <span class="burger-line"></span>
-                </button>
             </nav>
         </div>
     </header>
@@ -48,7 +48,10 @@
                 </div>
             </div>
             <div class="hero-image">
-                <div class="hero-placeholder">Product photo</div>
+                <!-- Replace this placeholder with <img src="assets/images/hero-pot.webp" alt="Handmade rattan flower pot" width="400" height="400">. -->
+                <div class="hero-placeholder" data-image-slot="hero" role="img" aria-label="Rattan flower pot product photo placeholder">
+                    <span>Product photo</span>
+                </div>
             </div>
         </div>
     </section>
@@ -61,42 +64,43 @@
                 <p class="section-description">Choose the perfect pot for your home or garden.</p>
             </div>
             <div class="catalog-grid">
-                <div class="catalog-card">
-                    <div class="catalog-image">Pot #1</div>
+                <article class="catalog-card">
+                    <!-- Replace with an <img loading="lazy" width="640" height="480"> when the product photo is ready. -->
+                    <div class="catalog-image" data-image-slot="classic" role="img" aria-label="Classic rattan pot photo placeholder"><span>Pot #1</span></div>
                     <h3 class="catalog-title">Classic</h3>
                     <span class="catalog-price">from 2500 rub</span>
                     <p class="catalog-text">Universal size for houseplants.</p>
-                </div>
-                <div class="catalog-card">
-                    <div class="catalog-image">Pot #2</div>
+                </article>
+                <article class="catalog-card">
+                    <div class="catalog-image" data-image-slot="large" role="img" aria-label="Large rattan pot photo placeholder"><span>Pot #2</span></div>
                     <h3 class="catalog-title">Large</h3>
                     <span class="catalog-price">from 4000 rub</span>
                     <p class="catalog-text">For large plants and flowers in a pot.</p>
-                </div>
-                <div class="catalog-card">
-                    <div class="catalog-image">Pot #3</div>
+                </article>
+                <article class="catalog-card">
+                    <div class="catalog-image" data-image-slot="small" role="img" aria-label="Small rattan pot photo placeholder"><span>Pot #3</span></div>
                     <h3 class="catalog-title">Small</h3>
                     <span class="catalog-price">from 1500 rub</span>
                     <p class="catalog-text">For succulents and small house flowers.</p>
-                </div>
-                <div class="catalog-card">
-                    <div class="catalog-image">Pot #4</div>
+                </article>
+                <article class="catalog-card">
+                    <div class="catalog-image" data-image-slot="hanging" role="img" aria-label="Hanging rattan pot photo placeholder"><span>Pot #4</span></div>
                     <h3 class="catalog-title">Hanging</h3>
                     <span class="catalog-price">from 3000 rub</span>
                     <p class="catalog-text">Ideal for balcony and terrace.</p>
-                </div>
-                <div class="catalog-card">
-                    <div class="catalog-image">Pot #5</div>
+                </article>
+                <article class="catalog-card">
+                    <div class="catalog-image" data-image-slot="oval" role="img" aria-label="Oval rattan pot photo placeholder"><span>Pot #5</span></div>
                     <h3 class="catalog-title">Oval</h3>
                     <span class="catalog-price">from 3500 rub</span>
                     <p class="catalog-text">Non-standard shape for original interiors.</p>
-                </div>
-                <div class="catalog-card">
-                    <div class="catalog-image">Pot #6</div>
+                </article>
+                <article class="catalog-card">
+                    <div class="catalog-image" data-image-slot="set" role="img" aria-label="Rattan pot set photo placeholder"><span>Pot #6</span></div>
                     <h3 class="catalog-title">Set</h3>
                     <span class="catalog-price">from 8000 rub</span>
                     <p class="catalog-text">Three pots of different sizes in one set.</p>
-                </div>
+                </article>
             </div>
         </div>
     </section>
@@ -109,29 +113,29 @@
                 <p class="section-description">What our buyers say.</p>
             </div>
             <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
+                <article class="testimonial-card">
+                    <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
                     <p class="testimonial-text">Beautiful pot, excellent quality. Neat weaving, looks expensive.</p>
                     <div class="testimonial-author">
                         <span class="testimonial-name">Elena S.</span>
                         <span class="testimonial-role">Moscow</span>
                     </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
+                </article>
+                <article class="testimonial-card">
+                    <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
                     <p class="testimonial-text">Ordered a large pot for a ficus. Arrived quickly, packed reliably.</p>
                     <div class="testimonial-author">
                         <span class="testimonial-name">Maria K.</span>
                         <span class="testimonial-role">Saint Petersburg</span>
                     </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
+                </article>
+                <article class="testimonial-card">
+                    <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
                     <p class="testimonial-text">Pleasant natural material, fits perfectly into the interior.</p>
                     <div class="testimonial-author">
                         <span class="testimonial-name">Alexey P.</span>
                         <span class="testimonial-role">Kazan</span>
-                    </div>
+                    </article>
                 </div>
             </div>
         </div>
@@ -147,39 +151,43 @@
             <div class="contact-wrapper">
                 <div class="contact-info">
                     <div class="contact-item">
-                        <span class="contact-icon">📍</span>
+                        <span class="contact-icon" aria-hidden="true">📍</span>
                         <div>
                             <strong>Address</strong>
                             <span>Moscow, Ratanovaya St., bld. 1</span>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <span class="contact-icon">📧</span>
+                        <span class="contact-icon" aria-hidden="true">📧</span>
                         <div>
                             <strong>Email</strong>
                             <span>hello@ratan.example</span>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <span class="contact-icon">📱</span>
+                        <span class="contact-icon" aria-hidden="true">📱</span>
                         <div>
                             <strong>WhatsApp / Telegram</strong>
                             <span>+7 (900) 000-00-00</span>
                         </div>
                     </div>
                 </div>
-                <form class="contact-form" id="contact-form">
+                <form class="contact-form" id="contact-form" novalidate>
+                    <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
                     <div class="form-group">
                         <label for="name" class="form-label">Your name</label>
-                        <input type="text" id="name" name="name" class="form-input" placeholder="Ivan" required>
+                        <input type="text" id="name" name="name" class="form-input" placeholder="Ivan" autocomplete="name" required>
+                        <span class="form-error" id="name-error"></span>
                     </div>
                     <div class="form-group">
                         <label for="phone" class="form-label">Phone</label>
-                        <input type="tel" id="phone" name="phone" class="form-input" placeholder="+7 (___) ___-__-__" required>
+                        <input type="tel" id="phone" name="phone" class="form-input" placeholder="+7 (___) ___-__-__" autocomplete="tel" required>
+                        <span class="form-error" id="phone-error"></span>
                     </div>
                     <div class="form-group">
                         <label for="message" class="form-label">Message</label>
                         <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your order" rows="4" required></textarea>
+                        <span class="form-error" id="message-error"></span>
                     </div>
                     <button type="submit" class="btn btn-primary btn-full">Submit application</button>
                 </form>
@@ -191,7 +199,7 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <a href="#" class="logo">Ratan</a>
+                <a href="#hero" class="logo">Ratan</a>
                 <p class="footer-text">© 2024 Ratan. Handmade rattan flower pots.</p>
             </div>
         </div>

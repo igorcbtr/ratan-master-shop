@@ -1,87 +1,63 @@
-# Ratan - Handmade Rattan Flower Pots
+# Ratan landing page
 
-Landing page for handmade woven flower pots made of rattan.
+Responsive, mobile-first landing page for a handmade rattan flower pot shop. The page uses semantic HTML, component-scoped CSS, and dependency-free JavaScript.
 
-## Project Structure
+## Stack
 
-```
-ratan-master-webpage/
-├── .gitignore
-├── index.html              # Main page (all sections in one file)
-├── css/
-│   ├── main.css            # Variables, reset, base styles, component imports
-│   └── components/
-│       ├── header.css      # Header and navigation
-│       ├── hero.css        # Hero section
-│       ├── catalog.css     # Product catalog
-│       ├── testimonials.css# Reviews section
-│       ├── contact.css     # Contacts and form
-│       └── footer.css      # Footer
-├── js/
-│   └── main.js             # Mobile menu, smooth scroll, form handling
-├── assets/
-│   ├── images/             # Product photos (add here)
-│   └── fonts/              # Fonts (optional)
-└── README.md               # This file
-```
+- HTML5 and vanilla JavaScript
+- CSS3 with custom properties and split component stylesheets
+- Tailwind CSS CDN utilities (kept intentionally minimal)
+- Inter from Google Fonts
 
-## How to Run Locally
+## Run locally
 
-### Option 1: Open file in browser (simplest)
-1. Copy the `ratan-master-webpage` folder to your computer.
-2. Double-click `index.html` - it will open in your default browser.
-3. The site is ready.
+No build step is required. Serve the repository over HTTP so local assets behave like production:
 
-### Option 2: Via Live Server in VS Code (recommended for development)
-1. Open the `ratan-master-webpage` folder in VS Code.
-2. Install the **Live Server** extension (Ritwick Dey) if not installed.
-3. Click **Go Live** in the bottom panel of VS Code or right-click `index.html` → **Open with Live Server**.
-4. The site will open at `http://127.0.0.1:5500` (or similar).
-5. Pages auto-reload on save.
-
-### Option 3: Via Python local server
-If Python is installed:
 ```bash
-cd /Users/igorcibotaru/Desktop/ratan-master-webpage
 python3 -m http.server 8000
 ```
-Then open in browser: `http://localhost:8000`
 
-## Color Palette (beige / natural)
+Open <http://localhost:8000>. VS Code Live Server works as well. Opening `index.html` directly is acceptable for a quick preview, but an HTTP server is recommended.
 
-Configured in `css/main.css` via CSS variables:
+## Project structure
 
-- `--color-bg` - page background (`#faf9f5`, warm beige)
-- `--color-text-dark` - main text (`#3e2e22`, dark brown)
-- `--color-text-muted` - secondary text (`#6b5b4c`)
-- `--color-text-light` - light text (`#8a7d6b`)
-- `--color-accent` - accent color (`#bc6c25`, rattan/clay color)
-- `--color-border` - borders and separators (`#e7e5e0`)
+```text
+index.html
+css/
+  main.css                 # Tokens, reset, shared utilities, imports
+  components/              # Header, hero, catalog, reviews, contact, footer
+js/main.js                 # Navigation, scroll effects, validation, form feedback
+assets/images/             # Product images
+assets/fonts/              # Optional self-hosted fonts
+```
 
-When you have product photos, send them and I will select exact colors to match the images.
+## Customization
 
-## Responsiveness
+- **Copy and content:** edit the labeled sections in `index.html`.
+- **Colors and spacing:** update variables in `css/main.css`.
+- **Section styles:** keep changes in the matching file under `css/components/`.
+- **Product images:** replace the marked placeholder `<div>` elements with images in `assets/images/`. Use meaningful `alt` text, explicit `width`/`height`, and `loading="lazy"` for catalog images. Keep the hero image eager because it is above the fold.
+- **Form delivery:** `js/main.js` currently validates locally and shows a no-reload success state. Connect the submit handler to a backend or form provider before accepting real orders.
 
-Built with **mobile first** approach:
-- Base styles - for mobile devices (single column, hamburger menu).
-- `@media (min-width: 768px)` - tablets and up (two columns, horizontal menu).
-- `@media (min-width: 1024px)` - desktop (three columns in catalog and reviews).
+## Accessibility and responsive behavior
 
-## How to Edit Easily
+The page includes labeled navigation controls, keyboard-friendly focus styles, semantic `article` cards, inline validation messages, `aria-live` form feedback, Escape-to-close navigation, and reduced-motion support. Layout breakpoints are mobile-first, with tablet styles at `768px` and desktop styles at `1024px`.
 
-- **Texts** - all in `index.html`, each section marked with comments.
-- **Products** - duplicate the `.catalog-card` block in the Catalog section.
-- **Colors** - edit variables in `:root` in `css/main.css`.
-- **Component styles** - each block in its own file in `css/components/` (e.g., `hero.css` handles only the hero section).
-- **Images** - put in `assets/images/` and substitute the path instead of `.hero-placeholder` / `.catalog-image`.
+## Deployment
 
-## Tech Stack
+This is a static site and can be deployed to GitHub Pages, Netlify, Vercel, or any static web host. Upload the repository contents, preserve the relative `css/`, `js/`, and `assets/` paths, and configure the host to serve `index.html` as the root document.
 
-- HTML5
-- Tailwind CSS (via CDN, can switch to npm version later)
-- CSS3 (variables, media queries, mobile first)
-- JavaScript (vanilla, no libraries)
-- Google Fonts (Inter)
+## Development workflow
+
+1. Create a feature branch from `main`.
+2. Make focused changes in the existing component structure.
+3. Run a local HTTP server and check mobile and desktop layouts.
+4. Validate keyboard navigation, form errors, reduced-motion behavior, and the menu at narrow widths.
+5. Use short English Conventional Commit messages such as `fix: improve mobile navigation`.
+
+## Repository
+
+<https://github.com/igorcbtr/ratan-master-shop>
 
 ## License
 

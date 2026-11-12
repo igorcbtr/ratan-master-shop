@@ -1,4 +1,4 @@
-/* Main styles - base variables and component imports */
+/* Shared tokens and base styles. Component-specific rules stay in css/components/. */
 
 /* Color palette: beige / natural ratan theme */
 :root {
@@ -11,6 +11,7 @@
     --color-accent-light: #d4a373;
     --color-border: #e7e5e0;
     --color-white: #ffffff;
+    --focus-ring: 0 0 0 3px rgba(188, 108, 37, 0.3);
 }
 
 /* Reset */
@@ -25,7 +26,7 @@ html {
 }
 
 body {
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     line-height: 1.6;
     color: var(--color-text-dark);
     background-color: var(--color-bg);
@@ -34,6 +35,18 @@ body {
 a {
     text-decoration: none;
     color: inherit;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 3px;
+    box-shadow: var(--focus-ring);
 }
 
 ul {
@@ -118,6 +131,51 @@ img {
     margin: 0 auto;
 }
 
+.form-status {
+    min-height: 1.5rem;
+    color: var(--color-accent);
+    font-weight: 600;
+}
+
+.form-error {
+    min-height: 1.25rem;
+    color: #a33a2b;
+    font-size: 0.8rem;
+}
+
+.is-invalid {
+    border-color: #a33a2b;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+
+    .fade-in {
+        opacity: 1;
+        transform: none;
+    }
+}
+
 /* Import component styles */
 @import './components/header.css';
 @import './components/hero.css';
@@ -126,7 +184,7 @@ img {
 @import './components/contact.css';
 @import './components/footer.css';
 
-/* Desktop overrides */
+/* Responsive layout overrides */
 @media (min-width: 768px) {
     .nav-list {
         display: flex;
