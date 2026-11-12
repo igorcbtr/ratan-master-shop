@@ -1,64 +1,90 @@
-// Mobile menu toggle
 const burger = document.getElementById('burger');
 const navList = document.getElementById('nav-list');
-const navLinks = document.querySelectorAll('.nav-link');
-
-burger.addEventListener('click', () => {
-    burger.classList.toggle('active');
-    navList.classList.toggle('active');
-});
-
-navLinks.forEach((link) => {
-    link.addEventListener('click', () => {
-        burger.classList.remove('active');
-        navList.classList.remove('active');
-    });
-});
-
-document.addEventListener('click', (e) => {
-    if (!burger.contains(e.target) && !navList.contains(e.target)) {
-        burger.classList.remove('active');
-        navList.classList.remove('active');
-    }
-});
-
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = anchor.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            targetElement.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start',
-            });
-        }
-    });
-});
-
-// Header shadow on scroll
 const header = document.getElementById('header');
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        header.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
-    } else {
-        header.style.boxShadow = 'none';
+const setMenuState = (isOpen) => {
+    burger.classList.toggle('active', isOpen);
+    navList.classList.toggle('active', isOpen);
+    document.body.classList.toggle('menu-open', isOpen);
+    burger.setAttribute('aria-expanded', String(isOpen));
+    burger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+};
+
+burger.addEventListener('click', () => setMenuState(!navList.classList.contains('active')));
+navList.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenuState(false)));
+document.addEventListener('click', (event) => {
+    if (!burger.contains(event.target) && !navList.contains(event.target)) setMenuState(false);
+});
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        setMenuState(false);
+        burger.focus();
     }
 });
 
-// Contact form handler
-const contactForm = document.getElementById('contact-form');
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (event) => {
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (!target) return;
+        event.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.setAttribute('tabindex', '-1');
+        target.focus({ preventScroll: true });
+    });
+});
 
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 24);
+window.addEventListener('scroll', updateHeader, { passive: true });
+updateHeader();
 
-    const formData = new FormData(contactForm);
-    const data = Object.fromEntries(formData.entries());
+const revealTargets = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    revealTargets.forEach((element) => revealObserver.observe(element));
+} else {
+    revealTargets.forEach((element) => element.classList.add('is-visible'));
+}
 
-    console.log('Form submitted:', data);
+const form = document.getElementById('contact-form');
+const status = document.getElementById('form-status');
+const fields = ['name', 'phone', 'message'].map((id) => document.getElementById(id));
 
-    alert('Thank you! Your application has been sent. We will contact you shortly.');
-    contactForm.reset();
+const validate = (field) => {
+    const value = field.value.trim();
+    let message = '';
+    if (!value) message = 'This field is required.';
+    if (field.id === 'name' && value && value.length < 2) message = 'Please enter at least 2 characters.';
+    if (field.id === 'phone' && value && value.replace(/\D/g, '').length < 7) message = 'Please enter a valid contact.';
+    if (field.id === 'message' && value && value.length < 8) message = 'Please tell us a little more.';
+    const error = document.getElementById(`${field.id}-error`);
+    field.classList.toggle('is-invalid', Boolean(message));
+    field.setAttribute('aria-invalid', String(Boolean(message)));
+    error.textContent = message;
+    return !message;
+};
+
+fields.forEach((field) => {
+    field.addEventListener('blur', () => validate(field));
+    field.addEventListener('input', () => {
+        if (field.classList.contains('is-invalid')) validate(field);
+    });
+});
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const valid = fields.map(validate).every(Boolean);
+    status.textContent = valid ? 'Thanks — we will be in touch soon.' : 'Please check the highlighted fields.';
+    if (valid) {
+        form.reset();
+        fields.forEach((field) => validate(field));
+    } else {
+        fields.find((field) => field.classList.contains('is-invalid'))?.focus();
+    }
 });
