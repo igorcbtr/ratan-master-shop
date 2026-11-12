@@ -27,7 +27,7 @@ assets/images/   # Brand logo, favicon, and product photography
 - Edit product names, prices, reviews, contact details, and Russian interface copy in `index.html`.
 - Adjust the visual system in `:root` inside `css/main.css`. Key tokens include `--ink`, `--paper`, `--cream`, `--moss`, `--clay`, and `--logo-paper`.
 - Keep `assets/images/ratan-master-logo.jpg` as the source brand mark and `assets/images/ratan-master-favicon.png` as the local favicon. Update both deliberately if the brand artwork changes.
-- The contact form validates in the browser and sends `name`, `phone`, `message`, and `subject` through the FormSubmit AJAX endpoint configured in `index.html`. FormSubmit may require email activation the first time a message is sent; keep the endpoint address aligned with the mailbox used by the business.
+- The contact area uses direct `tel:` and `mailto:` links. The phone link opens the dialer on supported devices, while the email link opens a new message addressed to `ianagaitur071@gmail.com` with a prepared subject and greeting. Social links for Facebook, Instagram, and TikTok open in a new tab.
 
 ## Accessibility and responsive behavior
 
